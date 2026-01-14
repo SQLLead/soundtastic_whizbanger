@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://soundboard.example.com/schemas/sound-definition.json",
+  "title": "Sound Definition",
+  "description": "Schema for sound effect definitions in the soundboard application",
+  "type": "object",
+  "required": ["id", "label", "icon", "file"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the sound (lowercase, hyphenated)",
+      "pattern": "^[a-z]+(-[a-z]+)*$",
+      "minLength": 2,
+      "maxLength": 30,
+      "examples": ["fart", "burp", "knuckle-crack", "neck-crunch"]
+    },
+    "label": {
+      "type": "string",
+      "description": "Human-readable display name for the button",
+      "minLength": 3,
+      "maxLength": 20,
+      "examples": ["Fart", "Burp", "Knuckle Pop", "Neck Crunch"]
+    },
+    "icon": {
+      "type": "string",
+      "description": "Unicode emoji character to display on button",
+      "minLength": 1,
+      "maxLength": 4,
+      "examples": ["💨", "🤢", "👊", "🦴", "🤕"]
+    },
+    "file": {
+      "type": "string",
+      "description": "Relative path to MP3 audio file",
+      "pattern": "^sounds/[a-z-]+\\.mp3$",
+      "examples": ["sounds/fart.mp3", "sounds/burp.mp3", "sounds/knuckle-crack.mp3"]
+    }
+  },
+  "additionalProperties": false
+}

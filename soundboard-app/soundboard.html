@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎵 Soundtastic Whizbanger</title>
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      color: white;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    /* Grid layout for buttons */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Button styles */
+    .sound-button {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      border: none;
+      border-radius: 15px;
+      padding: 20px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      min-height: 120px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .sound-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    }
+
+    .sound-button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .sound-button:focus {
+      outline: 3px solid #fff;
+      outline-offset: 2px;
+    }
+
+    .sound-button .icon {
+      font-size: 3rem;
+      line-height: 1;
+    }
+
+    .sound-button .label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Mobile responsive (1-2 columns) */
+    @media (max-width: 767px) {
+      .grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 10px;
+        padding: 15px;
+      }
+
+      .sound-button {
+        min-height: 100px;
+        padding: 15px;
+      }
+
+      .sound-button .icon {
+        font-size: 2.5rem;
+      }
+
+      .sound-button .label {
+        font-size: 0.8rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+    }
+
+    /* Very small screens (single column) */
+    @media (max-width: 320px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎵 Soundtastic Whizbanger</h1>
+    <div id="soundboard" class="grid">
+      <!-- Buttons will be generated here by JavaScript -->
+    </div>
+  </div>
+
+  <script>
+    /*
+     * █████████████████████████████████████████████████████████████████
+     * HOW TO ADD NEW SOUNDS (3-Step Process)
+     * █████████████████████████████████████████████████████████████████
+     *
+     * Step 1: Add your MP3 file to the sounds/ directory
+     *         Example: sounds/hiccup.mp3
+     *
+     * Step 2: Add ONE LINE to the sounds array below:
+     *         { id: 'hiccup', label: 'Hiccup', icon: '🤭', file: 'sounds/hiccup.mp3' }
+     *
+     * Step 3: Refresh this page in your browser
+     *         Your new button will appear automatically!
+     *
+     * That's it! No other code changes needed.
+     * █████████████████████████████████████████████████████████████████
+     */
+
+    // Define all sounds (add new sounds here!)
+    const sounds = [
+      { id: 'fart', label: 'Fart', icon: '💨', file: 'sounds/fart.mp3' },
+      { id: 'burp', label: 'Burp', icon: '🫢', file: 'sounds/burp.mp3' },
+      { id: 'knuckle-crack', label: 'Knuckle Pop', icon: '👊', file: 'sounds/knuckle-crack.mp3' },
+      { id: 'neck-crunch', label: 'Neck Crunch', icon: '🦴', file: 'sounds/neck-crunch.mp3' },
+      { id: 'back-creak', label: 'Back Creak', icon: '🧍', file: 'sounds/back-creak.mp3' },
+      { id: 'bonk', label: 'Head Bonk', icon: '🤕', file: 'sounds/bonk.mp3' },
+      { id: 'sproing', label: 'Sproing', icon: '🪀', file: 'sounds/sproing.mp3' },
+      { id: 'cough', label: 'Cough', icon: '😷', file: 'sounds/cough.mp3' },
+      { id: 'sneeze', label: 'Sneeze', icon: '🤧', file: 'sounds/sneeze.mp3' },
+      { id: 'snore', label: 'Snore', icon: '😴', file: 'sounds/man-snore.wav' },
+      { id: 'break-down', label: 'Failure', icon: '💥', file: 'sounds/break-down.wav' },
+      { id: 'clown-horn', label: 'Horn', icon: '🎺', file: 'sounds/clown-horn.wav' },
+      { id: 'fall', label: 'Fall', icon: '🤸‍♂️', file: 'sounds/fall.wav' },
+      { id: 'giggle', label: 'Giggle', icon: '😆', file: 'sounds/giggle.wav' },
+      { id: 'kiss', label: 'Kiss', icon: '💋', file: 'sounds/kiss.wav' },
+      { id: 'sad-horn', label: 'Sad Horn', icon: '📯', file: 'sounds/sad-horn.wav' },
+      { id: 'splat', label: 'Splat', icon: '🍅', file: 'sounds/splat.wav' },
+      { id: 'ricochet', label: 'Ricochet', icon: '🏹', file: 'sounds/ricochet.mp3' },
+      { id: 'gunshot', label: 'Gunshot', icon: '🔫', file: 'sounds/gunshot.mp3' }
+      
+    ];
+
+    // Function to play a sound
+    function playSound(soundFile) {
+      const audio = new Audio(soundFile);
+      audio.play().catch(err => {
+        console.error('Error playing sound:', err);
+      });
+    }
+
+    // Generate buttons when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      const soundboard = document.getElementById('soundboard');
+
+      sounds.forEach(sound => {
+        // Create button element
+        const button = document.createElement('button');
+        button.id = `btn-${sound.id}`;
+        button.className = 'sound-button';
+        button.setAttribute('data-sound-id', sound.id);
+        button.setAttribute('aria-label', `Play ${sound.label} sound`);
+
+        // Create icon and label spans
+        button.innerHTML = `
+          <span class="icon">${sound.icon}</span>
+          <span class="label">${sound.label}</span>
+        `;
+
+        // Add click event listener
+        button.addEventListener('click', () => playSound(sound.file));
+
+        // Add keyboard support (Enter and Space keys)
+        button.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            playSound(sound.file);
+          }
+        });
+
+        // Add button to grid
+        soundboard.appendChild(button);
+      });
+    });
+  </script>
+</body>
+</html>

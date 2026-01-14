@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://soundboard.example.com/schemas/sounds-array.json",
+  "title": "Sounds Array",
+  "description": "Array of sound definitions for the soundboard application",
+  "type": "array",
+  "minItems": 1,
+  "maxItems": 100,
+  "items": {
+    "$ref": "sound-definition.schema.json"
+  },
+  "uniqueItems": true,
+  "examples": [
+    [
+      { "id": "fart", "label": "Fart", "icon": "💨", "file": "sounds/fart.mp3" },
+      { "id": "burp", "label": "Burp", "icon": "🤢", "file": "sounds/burp.mp3" },
+      { "id": "knuckle-crack", "label": "Knuckle Pop", "icon": "👊", "file": "sounds/knuckle-crack.mp3" }
+    ]
+  ]
+}
