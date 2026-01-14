@@ -12,33 +12,9 @@ A playful web-based soundboard that plays humorous sound effects when buttons ar
 
 ## Quick Start
 
-### Option 1: Open Directly in Browser
+Simply navigate to the `soundboard-app` folder and double-click `soundboard.html` to open it in your browser. That's it!
 
-Simply double-click `soundboard.html` to open in your default browser.
-
-**Note**: If sounds don't play in Chrome, use Option 2 below (Chrome blocks local file audio due to CORS).
-
-### Option 2: Use a Local Server (Recommended)
-
-**Python 3**:
-
-```bash
-python -m http.server 8000
-```
-
-**Python 2**:
-
-```bash
-python -m SimpleHTTPServer 8000
-```
-
-**Node.js**:
-
-```bash
-npx http-server -p 8000
-```
-
-Then open: `http://localhost:8000/soundboard.html`
+The soundboard is a standalone HTML file with no server or installation required.
 
 ## Adding New Sounds
 
